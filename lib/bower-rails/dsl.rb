@@ -81,9 +81,6 @@ module BowerRails
     def group(name, options = {}, &block)
       options[:assets_path] ||= @assets_path
 
-      assert_asset_path options[:assets_path]
-      assert_group_name name
-
       @current_group = add_group name, options
       yield if block_given?
     end
