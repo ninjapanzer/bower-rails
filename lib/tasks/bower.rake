@@ -31,7 +31,7 @@ namespace :bower do
     task :production, :options do |_, args|
       args.with_defaults(:options => '')
       BowerRails::Performer.perform do |bower|
-        sh "#{bower} install -p #{args[:options]}"
+        sh "#{bower} install -p --config.directory=./ #{args[:options]}"
       end
     end
   end
@@ -86,7 +86,7 @@ namespace :bower do
 
   task :before_precompile do
     BowerRails.tasks.each do |task|
-      Rake.application.invoke_task(task)
+      Rake::Task[task].invoke
     end
   end
 end
